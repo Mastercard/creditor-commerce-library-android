@@ -15,7 +15,7 @@ object CreditorCommerceLibraryWrapper {
      * @param callbackListener Library callback return Success & failure response to Merchant
      * @param isVerificationRequired: Boolean = true this is optional parameter for skip signing verification while fetching DSP details
      */
-    fun getDspDetails(context: Context, dspManifestUrl: String, callbackListener: LibraryCallbackListener<List<DspDetails>>, isVerificationRequired: Boolean = false) {
+    fun getDspDetails(context: Context, dspManifestUrl: String, callbackListener: LibraryCallbackListener<List<DspDetails>>, isVerificationRequired: Boolean = true) {
         CreditorCommerceLibraryAPI.getDspDetails(context, dspManifestUrl, object : LibraryCallbackListener<List<DspDataResponseModel>> {
             override fun success(response: List<DspDataResponseModel>) {
                 val dspList = mutableListOf<DspDetails>()

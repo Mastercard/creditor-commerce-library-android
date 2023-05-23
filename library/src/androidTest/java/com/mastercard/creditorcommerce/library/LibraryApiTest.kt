@@ -1,16 +1,12 @@
 package com.mastercard.creditorcommerce.library
 
-import android.util.Log
-import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.mastercard.creditorcommerce.library.exception.LibraryError
-import com.mastercard.creditorcommerce.library.models.DspDetails
 import com.mastercard.creditorcommerce.library.utils.JourneyType
 import com.mastercard.creditorcommerce.library.utils.ValidationUtils
 import org.junit.Assert
 import org.junit.FixMethodOrder
 import org.junit.Test
 import org.junit.runners.MethodSorters
-import java.util.concurrent.CountDownLatch
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class LibraryApiTest {
@@ -129,11 +125,6 @@ object TestData {
     const val VALID_DSP_ID = "partnerBankV5001"
 
     const val INVALID_LIFECYCLE_ID = ""
-    const val VALID_LIFECYCLE_ID = "923224123123134100"
-
-    const val BUSINESS_TYPE = 3
-    val JOURNEY_TYPE_RTP = JourneyType.RequestToPay
-    val JOURNEY_TYPE_RTL = JourneyType.RequestToPay
 
     const val INVALID_MANIFEST_FORMAT = "asd.fgh"
     const val INVALID_MANIFEST_FORMAT_PAYLOAD = "qwe..asd"

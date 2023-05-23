@@ -47,6 +47,9 @@ internal object ValidationUtils {
             return LibraryErrorType.InvalidJourneyType.libraryError
         }
 
+        if (businessType == 0) {
+            return LibraryErrorType.InvalidBusinessType.libraryError
+        }
         return true
     }
 

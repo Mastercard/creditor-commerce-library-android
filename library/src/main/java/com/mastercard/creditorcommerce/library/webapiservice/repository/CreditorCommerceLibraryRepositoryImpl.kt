@@ -3,6 +3,7 @@ package com.mastercard.creditorcommerce.library.webapiservice.repository
 import android.content.Context
 import com.mastercard.creditorcommerce.library.LibraryCallbackListener
 import com.mastercard.creditorcommerce.library.exception.LibraryError
+import com.mastercard.creditorcommerce.library.exception.LibraryErrorType
 import com.mastercard.creditorcommerce.library.models.DspManifestDataResponseModel
 import com.mastercard.creditorcommerce.library.utils.LibraryConstants
 import com.mastercard.creditorcommerce.library.utils.LibraryUtils
@@ -39,13 +40,7 @@ internal class CreditorCommerceLibraryRepositoryImpl : CreditorCommerceLibraryBa
                         }
                         else -> {
                             if (isVerificationRequired) {
-                                //TODO: validate signature hear As of now skip signature verification as it is not implemented
-                                LibraryUtils.parseSignedManifestPayloadData(
-                                    response.split(
-                                        LibraryConstants.MANIFEST_DATA_SEPARATOR
-                                    )[LibraryConstants.PAYLOAD_INDEX_IN_MANIFEST_DATA],
-                                    callbackListener
-                                )
+                                SignatureValidator().verifySignatureAndParseData(context, response, callbackListener)
                                 return
                             }
                             LibraryUtils.parseSignedManifestPayloadData(
@@ -58,6 +53,28 @@ internal class CreditorCommerceLibraryRepositoryImpl : CreditorCommerceLibraryBa
                 }
             }
 
+            override fun failure(error: LibraryError) {
+                callbackListener.failure(error)
+            }
+        })
+    }
+
+
+    /**
+     * getSignedCertificateFromURL() return signing certificate from URL
+     * @param signingCertificateURL: It is signing certificate URL
+     * @param context : Android context required to make API call
+     * @param callbackListener Library callback return Success & failure response after validating data
+     **/
+    override fun getSignedCertificateFromURL(signingCertificateURL: String, context: Context, callbackListener: LibraryCallbackListener<String>) {
+        callAPI(signingCertificateURL, context, object : LibraryCallbackListener<String> {
+            override fun success(response: String) {
+                if (response.isEmpty()) {
+                    callbackListener.failure(LibraryErrorType.EmptySigningCertificateReceived.libraryError)
+                    return
+                }
+                callbackListener.success(response)
+            }
             override fun failure(error: LibraryError) {
                 callbackListener.failure(error)
             }

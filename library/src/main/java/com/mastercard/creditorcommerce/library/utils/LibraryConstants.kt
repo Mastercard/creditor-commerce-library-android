@@ -44,4 +44,15 @@ internal object LibraryConstants {
     *  Signed Signature Index in Manifest data ie. 2.
     */
     internal const val SIGNATURE_INDEX_IN_MANIFEST_DATA: Int = 2
+
+
+    /*
+    *  Header certificate URL key.
+    */
+    internal const val CERTIFICATE_URL_KEY: String = "x5u"
+
+    /*
+    *  signed algorithm key.
+    */
+    internal const val ALGORITHM_KEY: String = "alg"
 }
