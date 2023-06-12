@@ -40,7 +40,7 @@ internal class CreditorCommerceLibraryRepositoryImpl : CreditorCommerceLibraryBa
                         }
                         else -> {
                             if (isVerificationRequired) {
-                                SignatureValidator().verifySignatureAndParseData(context, response, callbackListener)
+                                SignatureValidator().verifySignatureAndParseData(context, dspManifestUrl,response, callbackListener)
                                 return
                             }
                             LibraryUtils.parseSignedManifestPayloadData(

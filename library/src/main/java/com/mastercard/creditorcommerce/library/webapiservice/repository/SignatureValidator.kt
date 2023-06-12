@@ -14,6 +14,7 @@ import org.jose4j.lang.JoseException
 import org.json.JSONObject
 import java.io.ByteArrayInputStream
 import java.io.IOException
+import java.net.URL
 import java.security.PublicKey
 import java.security.cert.CertificateException
 import java.security.cert.CertificateFactory
@@ -27,6 +28,7 @@ internal class SignatureValidator {
 
     fun verifySignatureAndParseData(
         context: Context,
+        dspManifestUrl: String,
         manifestSignedData: String,
         callbackListener: LibraryCallbackListener<DspManifestDataResponseModel>
     ) {
@@ -36,7 +38,7 @@ internal class SignatureValidator {
             val encodedPayload: String = signedDataArray[LibraryConstants.PAYLOAD_INDEX_IN_MANIFEST_DATA]
             val encodedSignature: String = signedDataArray[LibraryConstants.SIGNATURE_INDEX_IN_MANIFEST_DATA]
 
-            if (validateHeaderAndSignature(encodedHeader, encodedSignature)) {
+            if (validateHeaderAndSignature(dspManifestUrl, encodedHeader, encodedSignature)) {
                 val decodedHeaderJson = JSONObject(LibraryUtils.decodeBase64ToString(encodedHeader))
                 val signedCertificateURL = getSignedCertificateUrlFromHeaderJson(decodedHeaderJson)!!
                 val algorithm = getAlgorithmFromHeaderJson(decodedHeaderJson)!!
@@ -118,7 +120,7 @@ internal class SignatureValidator {
         LibraryError::class,
         Exception::class,
     )
-    private fun validateHeaderAndSignature(encodedHeader: String, encodedSignature: String): Boolean {
+    private fun validateHeaderAndSignature( dspManifestUrl: String, encodedHeader: String, encodedSignature: String): Boolean {
         if (encodedHeader.isEmpty()) {
             throw LibraryErrorType.EmptyHeaderReceived.libraryError
         }
@@ -133,6 +135,14 @@ internal class SignatureValidator {
 
         if (signedCertificateURL.isNullOrEmpty() || !URLUtil.isValidUrl(signedCertificateURL)) {
             throw LibraryErrorType.InvalidSignatureCertificateUrl.libraryError
+        }
+
+        if (dspManifestUrl.isNotEmpty() && URLUtil.isValidUrl(dspManifestUrl)) {
+            val dspManifestUrlHost = URL(dspManifestUrl).host
+            val signedCertificateURLHost = URL(signedCertificateURL).host
+            if (!(dspManifestUrlHost.equals(signedCertificateURLHost, false))) {
+                throw LibraryErrorType.InvalidSignatureCertificateUrl.libraryError
+            }
         }
 
         if (algorithm.isNullOrEmpty()) {
