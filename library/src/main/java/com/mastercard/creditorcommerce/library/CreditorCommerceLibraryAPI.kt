@@ -17,7 +17,7 @@ import java.net.URLDecoder
 
 internal object CreditorCommerceLibraryAPI {
     private val TAG = CreditorCommerceLibraryAPI::class.java.simpleName
-    private var CreditorCommerceLibraryRepository: CreditorCommerceLibraryRepository = CreditorCommerceLibraryRepositoryImpl()
+    var CreditorCommerceLibraryRepository: CreditorCommerceLibraryRepository = CreditorCommerceLibraryRepositoryImpl()
 
     /*
     * Temporary storing data list of DSP which is goin to be used in GenerateLink & Invoke app functionality

@@ -80,8 +80,8 @@ internal object ValidationUtils {
                 return LibraryErrorType.InvalidDSPUniqueId.libraryError
             }
 
-            if (dsp.appIconHash.isEmpty()) {
-                return LibraryErrorType.InvalidAppIconHash.libraryError
+            if (dsp.dspLogoHash.isEmpty()) {
+                return LibraryErrorType.InvalidDspLogoHash.libraryError
             }
         }
         return true

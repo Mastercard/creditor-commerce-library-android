@@ -21,10 +21,10 @@ object CreditorCommerceLibraryWrapper {
                 val dspList = mutableListOf<DspDetails>()
                 for (dsp in response) {
                     dspList.add(DspDetails(dsp.dspName,
-                            dsp.dspApiVersion,
+                            dsp.dspUseCaseType,
                             dsp.dspLogo,
                             dsp.dspUniqueId,
-                            dsp.appIconHash))
+                            dsp.dspLogoHash))
                 }
                 callbackListener.success(dspList)
             }

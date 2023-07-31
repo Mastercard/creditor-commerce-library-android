@@ -1,0 +1,33 @@
+package com.mastercard.creditorcommerce.library
+
+import com.mastercard.creditorcommerce.library.models.DspDataResponseModel
+
+internal object TestConstants {
+
+    const val VALID_MANIFEST_URL =
+        "https://zts4.co.uk/zapp-creditor-commerce/cdn-files/pbarfp-dsplist-manifest"
+
+    const val VALID_MANIFEST_RESPONSE =
+        "eyJhbGciOiJSUzI1NiIsInR5cCI6Impvc2UranNvbiIsIng1dSI6Imh0dHBzOi8venRzNC5jby51ay9maWxlcy9qd3MtdmVyaWZpY2F0aW9uLWNlcnRpZmljYXRlLmNlciJ9.eyJkc3BMaXN0VmVyc2lvbiI6MSwiYXBwcyI6W3siZHNwTmFtZSI6IlBhcnRuZXIgQmFuayIsImRzcFVzZUNhc2VUeXBlIjozLCJkc3BMb2dvIjoiaHR0cHM6Ly96dHM0LmNvLnVrL3phcHAtY3JlZGl0b3ItY29tbWVyY2UvY2RuLWZpbGVzL2RzcC1sb2dvcy9wYXJ0bmVyLWJhbmsucG5nIiwiZHNwVW5pdmVyc2FsTGluayI6Imh0dHBzOi8vYWhpMS56dHMyLmNvLnVrLyIsImRzcFVuaXF1ZUlkIjoiMGQ2M2Y0NDUtOThiMi00NDViLWIwN2ItM2Y5MGI3NDhmZTJlIiwiZHNwTG9nb0hhc2giOiJKdFJRRmpuT042bnlfR3BzX2NCSHVZaVI0WmVLYUVMNTBtaU5Vckk4WDI4PSJ9LHsiZHNwTmFtZSI6IlBhcnRuZXIgMiBCYW5rIiwiZHNwVXNlQ2FzZVR5cGUiOjMsImRzcExvZ28iOiJodHRwczovL3p0czQuY28udWsvemFwcC1jcmVkaXRvci1jb21tZXJjZS9jZG4tZmlsZXMvZHNwLWxvZ29zL3BhcnRuZXItMi1iYW5rLnBuZyIsImRzcFVuaXZlcnNhbExpbmsiOiJodHRwczovL21lcmNoYW50Lnp0czIuY28udWsvIiwiZHNwVW5pcXVlSWQiOiJwYXJ0bmVyMkJhbmtWNTAwMiIsImRzcExvZ29IYXNoIjoiRTFtOTVXUEQ2N1hpYzYyeVFsT0QyN01IRTVyZl9rNWt1LU53bWhheVVxTT0ifV19.d1JCNc1TZn1NcyIS0GwOsjZcPgsednqVYQkrvzKJIUQEKSd_WyBXaZjXbg7x8XwIu14GwIPNVq4gta1TrD05pj0CK0UQ1JBUKod_7a9VryShCvBA5Y-Mg4J_WJiacMrmoGlGR4OLPYcXmxODqZxM-1bjJLO6z-1cC0qGn8dxP7Vd0_k6kp2OtFqts5xTKir24Aqw8Kv6lWP0EuiEvzH4P09x-hCXUiJcpaYbciWLiVziBkeS10L9xGuLe6LZ145Q_ECXhik82gLDHMXmgwSSw0dat4eRu93jx6vaZByxHY7FaYkGp3tlt7yIWeGqLKn7jAAJM7RP8Pie7gRPcigI9A"
+
+    const val VALID_MANIFEST_PAYLOAD =
+        "eyJkc3BMaXN0VmVyc2lvbiI6MSwiYXBwcyI6W3siZHNwTmFtZSI6IlBhcnRuZXIgQmFuayIsImRzcFVzZUNhc2VUeXBlIjozLCJkc3BMb2dvIjoiaHR0cHM6Ly96dHM0LmNvLnVrL3phcHAtY3JlZGl0b3ItY29tbWVyY2UvY2RuLWZpbGVzL2RzcC1sb2dvcy9wYXJ0bmVyLWJhbmsucG5nIiwiZHNwVW5pdmVyc2FsTGluayI6Imh0dHBzOi8vYWhpMS56dHMyLmNvLnVrLyIsImRzcFVuaXF1ZUlkIjoiMGQ2M2Y0NDUtOThiMi00NDViLWIwN2ItM2Y5MGI3NDhmZTJlIiwiZHNwTG9nb0hhc2giOiJKdFJRRmpuT042bnlfR3BzX2NCSHVZaVI0WmVLYUVMNTBtaU5Vckk4WDI4PSJ9LHsiZHNwTmFtZSI6IlBhcnRuZXIgMiBCYW5rIiwiZHNwVXNlQ2FzZVR5cGUiOjMsImRzcExvZ28iOiJodHRwczovL3p0czQuY28udWsvemFwcC1jcmVkaXRvci1jb21tZXJjZS9jZG4tZmlsZXMvZHNwLWxvZ29zL3BhcnRuZXItMi1iYW5rLnBuZyIsImRzcFVuaXZlcnNhbExpbmsiOiJodHRwczovL21lcmNoYW50Lnp0czIuY28udWsvIiwiZHNwVW5pcXVlSWQiOiJwYXJ0bmVyMkJhbmtWNTAwMiIsImRzcExvZ29IYXNoIjoiRTFtOTVXUEQ2N1hpYzYyeVFsT0QyN01IRTVyZl9rNWt1LU53bWhheVVxTT0ifV19"
+
+    const val VALID_CERT_URL = "https://zts4.co.uk/files/jws-verification-certificate.cer"
+
+    const val EMPTY_VALUE = ""
+    const val URL_WITHOUT_SECURE_PROTOCOL = "http://zts4.co.uk"
+    const val INVALID_BUSINESS_TYPE = 0
+    const val INVALID_MANIFEST_FORMAT = "asd.fgh"
+    const val INVALID_MANIFEST_FORMAT_PAYLOAD = "qwe..asd"
+
+    const val VALID_DSP_NAME = "Test Bank"
+    const val VALID_LIFECYCLE_ID = "198075996810794843"
+    const val VALID_BUSINESS_TYPE = 2
+    const val VALID_USE_CASE_TYPE = 3
+    const val VALID_DSP_LOGO_URL = "https://testdomain.co.uk/test-bank.png"
+    const val VALID_DSP_UNIVERSAL_LINK = "https://testbank.domain.co.uk/"
+    const val VALID_DSP_UNIQUE_ID = "0d63f445-98b2-445b-b07b-3f90b748fe2e"
+    const val VALID_DSP_LOGO_HASH = "JtRQFjnON6ny_Gps_cBHuYiR4ZeKaEL50miNUrI8X28="
+    
+}

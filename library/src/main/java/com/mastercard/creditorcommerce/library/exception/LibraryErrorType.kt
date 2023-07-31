@@ -22,7 +22,7 @@ internal enum class LibraryErrorType(val libraryError: LibraryError) {
     InvalidDSPLogo(InvalidManifestFileError.libraryError),
     InvalidDSPUniversalLink(InvalidManifestFileError.libraryError),
     InvalidDSPUniqueId(InvalidManifestFileError.libraryError),
-    InvalidAppIconHash(InvalidManifestFileError.libraryError),
+    InvalidDspLogoHash(InvalidManifestFileError.libraryError),
 
     //Signed manifest & signature validation
     InvalidManifestDataReceived(InvalidManifestFileError.libraryError),
