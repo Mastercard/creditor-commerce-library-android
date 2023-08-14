@@ -4,36 +4,36 @@ apply plugin: 'maven'
 def localReleaseDest = "${buildDir}/release/${version}"
 
 task sourcesJar(type: Jar) {
-    //classifier = 'sources'
     archiveClassifier.set('sources')
     from android.sourceSets.main.java.srcDirs
 }
 
-uploadArchives {
-    repositories.mavenDeployer {
-        pom.groupId = project.CCL_GROUP_ID
-        pom.artifactId = project.CCL_ARTIFACT_ID
-        pom.version = project.CCL_VERSION
-        // Add other pom properties here if you want (developer details / licenses)
-        repository(url: "file://${localReleaseDest}")
+afterEvaluate {
+
+    uploadArchives {
+        repositories.mavenDeployer {
+            pom.groupId = project.CCL_GROUP_ID
+            pom.artifactId = project.CCL_ARTIFACT_ID
+            pom.version = project.CCL_VERSION
+            repository(url: "file://${localReleaseDest}")
+        }
+    }
+
+    task zipRelease(type: Zip) {
+        dependsOn uploadArchives
+        from localReleaseDest
+        destinationDir buildDir
+        archiveName "release-${project.CCL_VERSION}.zip"
+    }
+
+    task generateLibraryRelease {
+        dependsOn zipRelease
+        doLast {
+            println "Release ${project.CCL_VERSION} can be found at ${localReleaseDest}/"
+            println "Release ${project.CCL_VERSION} zipped can be found ${buildDir}/release-${project.CCL_VERSION}.zip"
+        }
     }
 }
-
-task zipRelease(type: Zip) {
-    from localReleaseDest
-    destinationDir buildDir
-    archiveName "release-${project.CCL_VERSION}.zip"
-}
-
-task generateLibraryRelease {
-    doLast {
-        println "Release ${project.CCL_VERSION} can be found at ${localReleaseDest}/"
-        println "Release ${project.CCL_VERSION} zipped can be found ${buildDir}/release-${project.CCL_VERSION}.zip"
-    }
-}
-
-generateLibraryRelease.dependsOn(uploadArchives)
-generateLibraryRelease.dependsOn(zipRelease)
 
 artifacts {
     archives sourcesJar
