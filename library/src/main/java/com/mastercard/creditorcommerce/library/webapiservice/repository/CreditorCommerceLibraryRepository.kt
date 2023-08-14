@@ -14,4 +14,11 @@ internal interface CreditorCommerceLibraryRepository {
      */
     fun getManifestRAWData(dspManifestUrl: String, context: Context, callbackListener: LibraryCallbackListener<DspManifestDataResponseModel>, isVerificationRequired: Boolean)
 
+    /**
+     * getSignedCertificateFromURL() return signing certificate from URL
+     * @param signingCertificateURL: It is signing certificate URL
+     * @param context : Android context required to make API call
+     * @param callbackListener Library callback return Success & failure response after validating data
+     **/
+    fun getSignedCertificateFromURL(signingCertificateURL: String, context: Context, callbackListener: LibraryCallbackListener<String>)
 }

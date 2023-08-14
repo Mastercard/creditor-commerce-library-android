@@ -14,19 +14,27 @@ internal enum class LibraryErrorType(val libraryError: LibraryError) {
     InvalidSecureProtocol(LibraryError(1006, "Invalid protocol, Secure protocol HTTPS is only supported.")),
 
     InvalidManifestFileError(LibraryError(1007, "Invalid dsp manifest file. Please recheck & configure again.")),
+
     EmptyStringReceived(InvalidManifestFileError.libraryError),
     InvalidEncoding(InvalidManifestFileError.libraryError),
     DSPListFileIsEmpty(InvalidManifestFileError.libraryError),
     InvalidDSPName(InvalidManifestFileError.libraryError),
-    InvalidDSPAPIVersion(InvalidManifestFileError.libraryError),
     InvalidDSPLogo(InvalidManifestFileError.libraryError),
     InvalidDSPUniversalLink(InvalidManifestFileError.libraryError),
     InvalidDSPUniqueId(InvalidManifestFileError.libraryError),
-    InvalidAppIconHash(InvalidManifestFileError.libraryError),
+    InvalidDspLogoHash(InvalidManifestFileError.libraryError),
 
     //Signed manifest & signature validation
     InvalidManifestDataReceived(InvalidManifestFileError.libraryError),
     EmptyPayloadReceived(InvalidManifestFileError.libraryError),
+    EmptySigningCertificateReceived(InvalidManifestFileError.libraryError),
+    InvalidSignatureCertificateUrl(InvalidManifestFileError.libraryError),
+    InvalidSignedCertificate(InvalidManifestFileError.libraryError),
+    SignatureVerificationFailed(InvalidManifestFileError.libraryError),
+    InvalidPublicKey(InvalidManifestFileError.libraryError),
+    EmptyHeaderReceived(InvalidManifestFileError.libraryError),
+    EmptySignatureReceived(InvalidManifestFileError.libraryError),
+    InvalidSignatureAlgorithm(InvalidManifestFileError.libraryError),
 
     //Android Specific
     UnableToInvokeDSP(LibraryError(1101, "Unable to open DSP app.")),

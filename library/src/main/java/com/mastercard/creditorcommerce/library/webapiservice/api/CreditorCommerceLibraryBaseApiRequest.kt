@@ -1,8 +1,10 @@
 package com.mastercard.creditorcommerce.library.webapiservice.api
 
 import android.content.Context
-import android.util.Log
-import com.android.volley.*
+import com.android.volley.ClientError
+import com.android.volley.NoConnectionError
+import com.android.volley.Request
+import com.android.volley.TimeoutError
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.mastercard.creditorcommerce.library.LibraryCallbackListener
@@ -26,12 +28,10 @@ internal abstract class CreditorCommerceLibraryBaseApiRequest {
             context: Context,
             callbackListener: LibraryCallbackListener<String>
     ) {
-        Log.d(TAG, "Request URL: $url")
         val queue = Volley.newRequestQueue(context)
         val stringRequest = StringRequest(
                 Request.Method.GET, url,
                 { response ->
-                    Log.d(TAG, "Response: $response")
                     callbackListener.success(response)
                 },
                 { error ->

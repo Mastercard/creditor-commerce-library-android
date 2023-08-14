@@ -1,7 +1,6 @@
 package com.mastercard.creditorcommerce.library.utils
 
 import android.os.Build
-import android.util.Log
 import com.google.gson.Gson
 import com.mastercard.creditorcommerce.library.LibraryCallbackListener
 import com.mastercard.creditorcommerce.library.exception.LibraryErrorType
@@ -22,8 +21,8 @@ internal object LibraryUtils {
             Base64.getEncoder().encodeToString(dataString.toByteArray())
         } else {
             return android.util.Base64.encodeToString(
-                dataString.trim().toByteArray(),
-                android.util.Base64.DEFAULT
+                    dataString.trim().toByteArray(),
+                    android.util.Base64.DEFAULT
             ).trimEnd()
         }
     }
@@ -38,7 +37,7 @@ internal object LibraryUtils {
             Base64.getDecoder().decode(encodedString).decodeToString()
         } else {
             android.util.Base64.decode(encodedString, android.util.Base64.DEFAULT)
-                .decodeToString() // Unresolved reference: decode
+                    .decodeToString() // Unresolved reference: decode
         }
     }
 
@@ -54,7 +53,6 @@ internal object LibraryUtils {
         //Extract Payload data from Manifest & Parse data
         try {
             val jsonManifestData = decodeBase64ToString(encodedPayloadData)
-            Log.d(TAG, "Decoded Payload Data: ${jsonManifestData}")
             callbackListener.success(
                 Gson().fromJson(
                     jsonManifestData,

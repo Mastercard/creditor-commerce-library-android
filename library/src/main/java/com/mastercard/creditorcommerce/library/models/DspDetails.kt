@@ -5,8 +5,8 @@ package com.mastercard.creditorcommerce.library.models
 */
 data class DspDetails (
     var dspName: String,
-    var dspApiVersion: Int,
+    var dspUseCaseType: Int,
     var dspLogo: String,
     var dspUniqueId: String,
-    var appIconHash: String
+    var dspLogoHash: String
 )

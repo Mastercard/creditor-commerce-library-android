@@ -1,12 +1,2 @@
-pluginManagement {
-    resolutionStrategy {
-        eachPlugin {
-            if (requested.id.toString() == 'org.cyclonedx.bom') {
-                useModule('org.cyclonedx:cyclonedx-gradle-plugin:1.2.0')
-            }
-        }
-    }
-}
-
 rootProject.name = "Creditor Commerce Library"
 include ':library'

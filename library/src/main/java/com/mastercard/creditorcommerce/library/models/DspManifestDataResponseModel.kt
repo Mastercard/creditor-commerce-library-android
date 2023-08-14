@@ -5,6 +5,5 @@ package com.mastercard.creditorcommerce.library.models
 */
  internal data class DspManifestDataResponseModel constructor(
     var dspListVersion: Int,
-    var cacheLifetime: Int,
     var apps: List<DspDataResponseModel>
 )

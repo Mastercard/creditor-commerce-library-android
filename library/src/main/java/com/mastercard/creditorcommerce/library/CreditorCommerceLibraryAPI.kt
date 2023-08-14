@@ -3,7 +3,6 @@ package com.mastercard.creditorcommerce.library
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import com.mastercard.creditorcommerce.library.exception.LibraryError
 import com.mastercard.creditorcommerce.library.exception.LibraryErrorType
 import com.mastercard.creditorcommerce.library.models.DspDataResponseModel
@@ -18,7 +17,7 @@ import java.net.URLDecoder
 
 internal object CreditorCommerceLibraryAPI {
     private val TAG = CreditorCommerceLibraryAPI::class.java.simpleName
-    private var CreditorCommerceLibraryRepository: CreditorCommerceLibraryRepository = CreditorCommerceLibraryRepositoryImpl()
+    var CreditorCommerceLibraryRepository: CreditorCommerceLibraryRepository = CreditorCommerceLibraryRepositoryImpl()
 
     /*
     * Temporary storing data list of DSP which is goin to be used in GenerateLink & Invoke app functionality
@@ -148,7 +147,6 @@ internal object CreditorCommerceLibraryAPI {
                 .appendQueryParameter(LibraryConstants.BUSINESS_TYPE_KEY, LibraryUtils.encodeStringToBase64(businessType.toString()))
                 .appendQueryParameter(LibraryConstants.JOURNEY_TYPE_KEY, LibraryUtils.encodeStringToBase64(journeyType.journeyType))
                 .build()
-        Log.d(TAG, "Generated Encoded Universal Link = ${URLDecoder.decode(url.toString(), "UTF-8")}")
         return URLDecoder.decode(url.toString(), "UTF-8")
     }
 }

@@ -5,9 +5,9 @@ package com.mastercard.creditorcommerce.library.models
  */
  internal data class DspDataResponseModel(
     var dspName: String,
-    var dspApiVersion: Int,
+    var dspUseCaseType: Int,
     var dspLogo: String,
     var dspUniversalLink: String,
     var dspUniqueId: String,
-    var appIconHash: String
+    var dspLogoHash: String
 )
