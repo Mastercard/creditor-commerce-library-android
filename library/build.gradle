@@ -77,4 +77,3 @@ dependencies {
 
 }
 apply from: 'release.gradle'
-apply from: "${rootProject.projectDir}/sonatype-publish.gradle"

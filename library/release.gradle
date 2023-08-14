@@ -1,5 +1,5 @@
 // ./gradlew clean build :creditor-merchant-library:generateLibraryRelease
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 def localReleaseDest = "${buildDir}/release/${version}"
 
@@ -9,19 +9,26 @@ task sourcesJar(type: Jar) {
 }
 
 afterEvaluate {
-
-    uploadArchives {
-        repositories.mavenDeployer {
-            pom.groupId = project.CCL_GROUP_ID
-            pom.artifactId = project.CCL_ARTIFACT_ID
-            pom.version = project.CCL_VERSION
-            repository(url: "file://${localReleaseDest}")
+    publishing {
+        publications {
+            localLibraryRelease(MavenPublication){
+                groupId project.CCL_GROUP_ID
+                artifactId project.CCL_ARTIFACT_ID
+                version project.CCL_VERSION
+                artifact sourcesJar
+                artifact bundleReleaseAar
+            }
+        }
+        repositories {
+            maven {
+                url =  uri("file://${localReleaseDest}")
+            }
         }
     }
 
     task zipRelease(type: Zip) {
-        dependsOn uploadArchives
         from localReleaseDest
+        dependsOn publishLocalLibraryReleasePublicationToMavenRepository
         destinationDir buildDir
         archiveName "release-${project.CCL_VERSION}.zip"
     }
